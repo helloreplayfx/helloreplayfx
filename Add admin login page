@@ -1,0 +1,39 @@
+/* Admin Login */
+.admin-login-section {
+    padding: 150px 5% 80px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.admin-credentials {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #00d4ff;
+}
+
+.admin-credentials h4 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.admin-credentials p {
+    margin: 0.5rem 0;
+    text-align: left;
+}
