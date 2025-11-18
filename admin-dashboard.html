@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord Admin - HelloReplay FX</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Admin -->
+    <nav class="navbar">
+        <div class="logo">
+            <span>HelloReplay FX Admin</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Site Public</a>
+            <a href="#" onclick="logout()">Déconnexion</a>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="admin-profile">
+                <h3>👨‍💼 Administrateur</h3>
+                <p>Connecté en tant que <strong id="adminName">admin</strong></p>
+            </div>
+            
+            <div class="admin-menu">
+                <button onclick="showSection('dashboard')" class="menu-btn active">📊 Tableau de Bord</button>
+                <button onclick="showSection('affiliates')" class="menu-btn">👥 Affiliés</button>
+                <button onclick="showSection('payments')" class="menu-btn">💳 Paiements</button>
+                <button onclick="showSection('settings')" class="menu-btn">⚙️ Paramètres</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="admin-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="admin-section active">
+                <h2>📊 Tableau de Bord</h2>
+                
+                <div class="stats-grid-admin">
+                    <div class="stat-card-admin">
+                        <h3>Affiliés Totaux</h3>
+                        <div class="stat-number-admin" id="totalAffiliates">0</div>
+                    </div>
+                    <div class="stat-card-admin">
+                        <h3>Commissions Total</h3>
+                        <div class="stat-number-admin" id="totalCommissions">0€</div>
+                    </div>
+                    <div class="stat-card-admin">
+                        <h3>Paiements en Attente</h3>
+                        <div class="stat-number-admin" id="pendingPayments">0</div>
+                    </div>
+                    <div class="stat-card-admin">
+                        <h3>Revenus Mensuels</h3>
+                        <div class="stat-number-admin" id="monthlyRevenue">0€</div>
+                    </div>
+                </div>
+
+                <!-- Recent Affiliates -->
+                <div class="recent-affiliates">
+                    <h3>📈 Affiliés Récents</h3>
+                    <div id="recentAffiliatesList" class="affiliates-list">
+                        <!-- Liste dynamique -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Affiliates Management -->
+            <section id="affiliates" class="admin-section">
+                <h2>👥 Gestion des Affiliés</h2>
+                
+                <div class="admin-actions">
+                    <input type="text" id="searchAffiliate" placeholder="🔍 Rechercher un affilié..." class="search-input">
+                    <button onclick="exportAffiliates()" class="action-btn">📄 Exporter en CSV</button>
+                </div>
+
+                <table class="affiliates-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Ventes</th>
+                            <th>Commission</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="affiliatesTableBody">
+                        <!-- Données dynamiques -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Payments Management -->
+            <section id="payments" class="admin-section">
+                <h2>💳 Gestion des Paiements</h2>
+                
+                <div class="payment-actions">
+                    <button onclick="calculateMonthlyPayments()" class="action-btn primary">🧮 Calculer Paiements du Mois</button>
+                    <button onclick="exportPayments()" class="action-btn">📄 Exporter</button>
+                </div>
+
+                <div class="payments-list">
+                    <h3>Paiements à Effectuer</h3>
+                    <div id="paymentsContainer">
+                        <!-- Liste dynamique -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings -->
+            <section id="settings" class="admin-section">
+                <h2>⚙️ Paramètres du Site</h2>
+                
+                <div class="settings-grid">
+                    <!-- Logo Settings -->
+                    <div class="setting-card">
+                        <h3>🖼️ Logo du Site</h3>
+                        <input type="file" id="logoUpload" accept="image/*">
+                        <button onclick="uploadLogo()" class="action-btn">Changer le Logo</button>
+                        <div class="current-logo">
+                            <img src="images/logo.png" alt="Logo actuel" id="currentLogo" style="max-width: 200px; margin-top: 1rem;">
+                        </div>
+                    </div>
+
+                    <!-- Announcements -->
+                    <div class="setting-card">
+                        <h3>📢 Annonces du Site</h3>
+                        <textarea id="announcementText" placeholder="Nouvelle annonce..."></textarea>
+                        <input type="color" id="announcementColor" value="#3498db">
+                        <button onclick="publishAnnouncement()" class="action-btn primary">Publier l'Annonce</button>
+                        
+                        <div class="announcements-list">
+                            <h4>Annonces Actives</h4>
+                            <div id="activeAnnouncements"></div>
+                        </div>
+                    </div>
+
+                    <!-- Commission Settings -->
+                    <div class="setting-card">
+                        <h3>💰 Paramètres de Commission</h3>
+                        <div class="setting-group">
+                            <label>Taux de commission :</label>
+                            <input type="number" id="commissionRate" value="15" min="1" max="50"> %
+                        </div>
+                        <div class="setting-group">
+                            <label>Seuil de paiement :</label>
+                            <input type="number" id="payoutThreshold" value="50" min="10"> €
+                        </div>
+                        <button onclick="saveSettings()" class="action-btn primary">💾 Sauvegarder</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="js/admin-dashboard.js"></script>
+</body>
+</html>
