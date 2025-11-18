@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Admin - HelloReplay FX</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span>HelloReplay FX</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Accueil</a>
+            <a href="affiliation.html">Devenir Affilié</a>
+            <a href="admin-login.html" class="active">Espace Admin</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Admin Login -->
+    <section class="admin-login-section">
+        <div class="container">
+            <div class="login-container">
+                <h2>🔐 Connexion Administrateur</h2>
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="adminUsername">Nom d'utilisateur</label>
+                        <input type="text" id="adminUsername" name="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adminPassword">Mot de passe</label>
+                        <input type="password" id="adminPassword" name="password" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Se Connecter</button>
+                </form>
+
+                <div class="admin-credentials">
+                    <h4>Identifiants de test :</h4>
+                    <p><strong>Utilisateur :</strong> admin</p>
+                    <p><strong>Mot de passe :</strong> admin123</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
